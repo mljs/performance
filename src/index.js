@@ -45,38 +45,44 @@ class Performance {
             }
         }
 
-        predP.sort((a, b) => a.pred - b.pred);
-        const l = predP.length;
+        predP.sort((a, b) => b.pred - a.pred);
 
-        const cutoffs = this.cutoffs = new Array(l + 1);
-        const fp = this.fp = new Array(l + 1);
-        const tp = this.tp = new Array(l + 1);
-        const fn = this.fn = new Array(l + 1);
-        const tn = this.tn = new Array(l + 1);
-        const nPosPred = this.nPosPred = new Array(l + 1);
-        const nNegPred = this.nNegPred = new Array(l + 1);
+        const cutoffs = this.cutoffs = [Number.MAX_VALUE];
+        const fp = this.fp = [0];
+        const tp = this.tp = [0];
 
         var nPos = 0;
         var nNeg = 0;
-        cutoffs[0] = Number.MAX_VALUE;
-        fp[0] = tp[0] = 0;
 
-        for (var i = 0; i < l; i++) {
+        var currentPred = predP[0].pred;
+        var nTp = 0;
+        var nFp = 0;
+        for (var i = 0; i < predP.length; i++) {
+            if (predP[i].pred !== currentPred) {
+                cutoffs.push(currentPred);
+                fp.push(nFp);
+                tp.push(nTp);
+                currentPred = predP[i].pred;
+            }
             if (predP[i].targ) {
                 nPos++;
-                tp[i + 1] = tp[i] + 1;
-                fp[i + 1] = fp[i];
+                nTp++;
             } else {
                 nNeg++;
-                tp[i + 1] = tp[i];
-                fp[i + 1] = fp[i] + 1;
+                nFp++;
             }
-
-            // TODO eliminate duplicates in tp and fp
-            cutoffs[i + 1] = predP[i].pred;
         }
+        cutoffs.push(currentPred);
+        fp.push(nFp);
+        tp.push(nTp);
 
-        for (var i = 0; i < (l + 1); i++) {
+        const l = cutoffs.length;
+        const fn = this.fn = new Array(l);
+        const tn = this.tn = new Array(l);
+        const nPosPred = this.nPosPred = new Array(l);
+        const nNegPred = this.nNegPred = new Array(l);
+
+        for (var i = 0; i < l; i++) {
             fn[i] = nPos - tp[i];
             tn[i] = nNeg - fp[i];
 
