@@ -12,7 +12,8 @@ class Performance {
      * @option    all    True if the entire matrix must be used. False to ignore the diagonal and lower part (default is false, for similarity/distance matrices)
      * @option    max    True if the max value corresponds to a perfect match (like in similarity matrices), false if it is the min value (default is false, like in distance matrices. All values will be multiplied by -1)
      */
-    constructor(prediction, target, options = {}) {
+    constructor(prediction, target, options) {
+        options = options || {};
         if (prediction.length !== target.length || prediction[0].length !== target[0].length) {
             throw new Error('dimensions of prediction and target do not match');
         }
@@ -157,7 +158,8 @@ class Performance {
         return auc;
     }
 
-    getDistribution(options = {}) {
+    getDistribution(options) {
+        options = options || {};
         var cutLength = this.cutoffs.length;
         var cutLow = options.xMin || Math.floor(this.cutoffs[cutLength - 1] * 100) / 100;
         var cutHigh = options.xMax || Math.ceil(this.cutoffs[1] * 100) / 100;
