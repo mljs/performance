@@ -24,7 +24,7 @@ describe('ROC curve', function () {
         perf.nPos.should.equal(4);
         perf.nNeg.should.equal(6);
         
-        perf.cutoffs.should.eql([Number.MAX_VALUE, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9]);
+        perf.cutoffs.should.eql([Number.MIN_VALUE, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]);
         perf.fp.should.eql([0, 0, 0, 1, 1, 2, 3, 4, 5, 6]);
         perf.tp.should.eql([0, 1, 3, 3, 4, 4, 4, 4, 4, 4]);
         perf.fn.should.eql([4, 3, 1, 1, 0, 0, 0, 0, 0, 0]);

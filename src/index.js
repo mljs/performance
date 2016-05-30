@@ -19,7 +19,7 @@ class Performance {
         }
         const rows = prediction.length;
         const columns = prediction[0].length;
-        const neg = !options.max;
+        const isDistance = !options.max;
 
         const predP = [];
 
@@ -27,7 +27,7 @@ class Performance {
             for (var i = 0; i < rows; i++) {
                 for (var j = 0; j < columns; j++) {
                     predP.push({
-                        pred: neg ? 0 - prediction[i][j] : prediction[i][j],
+                        pred: prediction[i][j],
                         targ: target[i][j]
                     });
                 }
@@ -39,16 +39,20 @@ class Performance {
             for (var i = 0; i < rows - 1; i++) {
                 for (var j = i + 1; j < columns; j++) {
                     predP.push({
-                        pred: neg ? 0 - prediction[i][j] : prediction[i][j],
+                        pred: prediction[i][j],
                         targ: target[i][j]
                     });
                 }
             }
         }
 
-        predP.sort((a, b) => b.pred - a.pred);
-
-        const cutoffs = this.cutoffs = [Number.MAX_VALUE];
+        if (isDistance) {
+            predP.sort((a, b) => a.pred - b.pred);
+        } else {
+            predP.sort((a, b) => b.pred - a.pred);
+        }
+        
+        const cutoffs = this.cutoffs = [isDistance ? Number.MIN_VALUE : Number.MAX_VALUE];
         const fp = this.fp = [0];
         const tp = this.tp = [0];
 
