@@ -236,5 +236,3 @@ Performance.names = {
   rnp: 'Rate of negative predictions',
   threshold: 'Threshold',
 };
-
-module.exports = Performance;
