@@ -1,65 +1,65 @@
 // Accuracy
-exports.acc = (pred) => {
+export function acc(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
     result[i] = (pred.tn[i] + pred.tp[i]) / (l - 1);
   }
   return result;
-};
+}
 
 // Error rate
-exports.err = (pred) => {
+export function err(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
     result[i] = pred.fn[i] + pred.fp[i] / (l - 1);
   }
   return result;
-};
+}
 
 // False positive rate
-exports.fpr = (pred) => {
+export function fpr(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
     result[i] = pred.fp[i] / pred.nNeg;
   }
   return result;
-};
+}
 
 // True positive rate
-exports.tpr = (pred) => {
+export function tpr(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
     result[i] = pred.tp[i] / pred.nPos;
   }
   return result;
-};
+}
 
 // False negative rate
-exports.fnr = (pred) => {
+export function fnr(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
     result[i] = pred.fn[i] / pred.nPos;
   }
   return result;
-};
+}
 
 // True negative rate
-exports.tnr = (pred) => {
+export function tnr(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
     result[i] = pred.tn[i] / pred.nNeg;
   }
   return result;
-};
+}
 
 // Positive predictive value
-exports.ppv = (pred) => {
+export function ppv(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
@@ -69,10 +69,10 @@ exports.ppv = (pred) => {
         : 0;
   }
   return result;
-};
+}
 
 // Negative predictive value
-exports.npv = (pred) => {
+export function npv(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
@@ -82,10 +82,10 @@ exports.npv = (pred) => {
         : 0;
   }
   return result;
-};
+}
 
 // Prediction conditioned fallout
-exports.pcfall = (pred) => {
+export function pcfall(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
@@ -95,10 +95,10 @@ exports.pcfall = (pred) => {
         : 1;
   }
   return result;
-};
+}
 
 // Prediction conditioned miss
-exports.pcmiss = (pred) => {
+export function pcmiss(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
@@ -108,10 +108,10 @@ exports.pcmiss = (pred) => {
         : 1;
   }
   return result;
-};
+}
 
 // Lift value
-exports.lift = (pred) => {
+export function lift(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
@@ -121,31 +121,31 @@ exports.lift = (pred) => {
         : 0;
   }
   return result;
-};
+}
 
 // Rate of positive predictions
-exports.rpp = (pred) => {
+export function rpp(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
     result[i] = pred.nPosPred[i] / pred.nSamples;
   }
   return result;
-};
+}
 
 // Rate of negative predictions
-exports.rnp = (pred) => {
+export function rnp(pred) {
   const l = pred.cutoffs.length;
   const result = new Array(l);
   for (let i = 0; i < l; i++) {
     result[i] = pred.nNegPred[i] / pred.nSamples;
   }
   return result;
-};
+}
 
 // Threshold
-exports.threshold = (pred) => {
+export function threshold(pred) {
   const clone = pred.cutoffs.slice();
   clone[0] = clone[1]; // Remove the infinite value
   return clone;
-};
+}
