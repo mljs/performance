@@ -1,3 +1,4 @@
+/* eslint-disable import/namespace */
 import * as measures from './measures';
 
 export default class Performance {
@@ -103,7 +104,6 @@ export default class Performance {
     this.nPos = nPos;
     this.nNeg = nNeg;
     this.nSamples = nPos + nNeg;
-    this.measures = measures;
   }
 
   /**
@@ -126,10 +126,10 @@ export default class Performance {
     if (typeof measure !== 'string') {
       throw new Error('No measure specified');
     }
-    if (!this.measures[measure]) {
+    if (!measures[measure]) {
       throw new Error(`The specified measure (${measure}) does not exist`);
     }
-    return this.measures[measure](this);
+    return measures[measure](this);
   }
 
   /**
