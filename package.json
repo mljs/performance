@@ -1,7 +1,7 @@
 {
   "name": "ml-performance",
   "version": "0.2.0",
-  "description": "Library providing tools to evaluate the performance of a classifier using for example ROC curves",
+  "description": "Library providing tools to evaluate the performance of a classifier using for example ROC curves and AUC",
   "main": "lib/index.js",
   "module": "src/index.js",
   "files": [
