@@ -4,15 +4,13 @@ import * as measures from './measures';
 export default class Performance {
   /**
    *
-   * @param prediction - The prediction matrix
-   * @param target - The target matrix (values: truthy for same class, falsy for different class)
-   * @param options
-   *
-   * @option    all    True if the entire matrix must be used. False to ignore the diagonal and lower part (default is false, for similarity/distance matrices)
-   * @option    max    True if the max value corresponds to a perfect match (like in similarity matrices), false if it is the min value (default is false, like in distance matrices. All values will be multiplied by -1)
+   * @param {array<array>} [prediction] - The prediction matrix
+   * @param {array<array>} [target] - The target matrix (values: truthy for same class, falsy for different class)
+   * @param {object} [options={}]
+   * @param {boolean} [options.all=false] True if the entire matrix must be used. False to ignore the diagonal and lower part (default is false, for similarity/distance matrices)
+   * @param {boolean} [options.max=false] True if the max value corresponds to a perfect match (like in similarity matrices), false if it is the min value (default is false, like in distance matrices. All values will be multiplied by -1)
    */
-  constructor(prediction, target, options) {
-    options = options || {};
+  constructor(prediction, target, options = {}) {
     if (
       prediction.length !== target.length ||
       prediction[0].length !== target[0].length
