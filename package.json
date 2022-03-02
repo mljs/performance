@@ -11,10 +11,11 @@
   "scripts": {
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
-    "prepublishOnly": "rollup -c",
-    "test": "npm run test-coverage && npm run eslint",
-    "test-coverage": "jest --coverage",
-    "test-only": "jest"
+    "prepack": "rollup -c",
+    "prettier": "prettier --check src",
+    "prettier-write": "prettier --write src",
+    "test": "npm run test-only && npm run eslint && npm run prettier",
+    "test-only": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -27,26 +28,13 @@
     "url": "https://github.com/mljs/performance/issues"
   },
   "homepage": "https://github.com/mljs/performance#readme",
-  "jest": {
-    "testEnvironment": "node"
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "semi": true,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "all"
-  },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
-    "@types/jest": "^26.0.24",
-    "eslint": "^7.30.0",
-    "eslint-config-cheminfo": "^5.2.4",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jest": "^24.3.6",
-    "eslint-plugin-prettier": "^3.4.0",
-    "jest": "^27.0.6",
-    "prettier": "^2.3.2",
-    "rollup": "^2.53.0"
+    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
+    "@types/jest": "^27.4.1",
+    "eslint": "^8.10.0",
+    "eslint-config-cheminfo": "^7.2.2",
+    "jest": "^27.5.1",
+    "prettier": "^2.5.1",
+    "rollup": "^2.69.0"
   }
 }
