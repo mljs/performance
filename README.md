@@ -14,4 +14,5 @@ https://cran.r-project.org/web/packages/ROCR/index.html
 
 [npm-image]: https://img.shields.io/npm/v/ml-performance.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/ml-performance
+[download-image]: https://img.shields.io/npm/dm/ml-performance.svg?style=flat-square
 [download-url]: https://npmjs.org/package/ml-performance
